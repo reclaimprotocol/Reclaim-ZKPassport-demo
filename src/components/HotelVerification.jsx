@@ -62,7 +62,9 @@ function HotelVerification() {
         onResult,
         onRequestReceived,
         onGeneratingProof,
-        onProofGenerated
+        onProofGenerated,
+        onReject,
+        onError
       } = query.done()
 
       setVerificationUrl(url)
@@ -80,17 +82,44 @@ function HotelVerification() {
 
       onProofGenerated(() => {
         console.log('Proofs generated successfully')
+        showToast('Proofs generated!', 'success')
+
+        // Manually trigger result after 2 seconds if SDK doesn't call onResult
+        setTimeout(() => {
+          console.log('⏱️ Manual timeout check - has result been set?')
+        }, 2000)
       })
 
       onResult((resultData) => {
+        console.log('✅ ✅ ✅ RESULT CALLBACK FIRED ✅ ✅ ✅')
         console.log('Verification result received:', resultData)
-        setResult(resultData)
+        console.log('Result data type:', typeof resultData)
+        console.log('Result is truthy?', !!resultData)
+        console.log('Full result object:', JSON.stringify(resultData, null, 2))
+
         setVerificationUrl('')
-        if (resultData.verified) {
+        setResult(resultData)
+        console.log('State updated - result set to:', resultData)
+
+        if (resultData?.verified) {
           showToast('Verification successful!', 'success')
         } else {
           showToast('Verification completed', 'success')
         }
+      })
+
+      onReject(() => {
+        console.log('❌ User rejected verification')
+        showToast('Verification rejected by user', 'warning')
+        setVerificationUrl('')
+        setLoading(false)
+      })
+
+      onError((error) => {
+        console.log('❌ Verification error:', error)
+        showToast('Verification error: ' + error.message, 'error')
+        setVerificationUrl('')
+        setLoading(false)
       })
 
     } catch (error) {
@@ -106,8 +135,11 @@ function HotelVerification() {
     setResult(null)
   }
 
+  console.log('Current state:', { result, verificationUrl, selectedOption })
+
   // Success Screen
   if (result) {
+    console.log('Rendering result screen with:', result)
     return (
       <div className="w-full">
         {toast && (
@@ -149,10 +181,10 @@ function HotelVerification() {
                 </div>
               )}
 
-              {(selectedOption.id === 'nationality' || selectedOption.id === 'residency') && result.data?.nationality && (
+              {(selectedOption.id === 'nationality' || selectedOption.id === 'residency') && result.result?.nationality && (
                 <div className="grid grid-cols-2 px-6 py-4 border-b border-gray-200">
                   <span className="text-sm text-gray-600 font-medium">Nationality</span>
-                  <span className="text-sm text-gray-900 font-semibold text-right">{result.data.nationality.disclose.result}</span>
+                  <span className="text-sm text-gray-900 font-semibold text-right">{result.result.nationality.disclose.result}</span>
                 </div>
               )}
 
@@ -165,28 +197,28 @@ function HotelVerification() {
 
               {selectedOption.id === 'comprehensive' && (
                 <>
-                  {result.data?.firstname && (
+                  {result.result?.firstname && (
                     <div className="grid grid-cols-2 px-6 py-4 border-b border-gray-200">
                       <span className="text-sm text-gray-600 font-medium">First Name</span>
-                      <span className="text-sm text-gray-900 font-semibold text-right">{result.data.firstname.disclose.result}</span>
+                      <span className="text-sm text-gray-900 font-semibold text-right">{result.result.firstname.disclose.result}</span>
                     </div>
                   )}
-                  {result.data?.lastname && (
+                  {result.result?.lastname && (
                     <div className="grid grid-cols-2 px-6 py-4 border-b border-gray-200">
                       <span className="text-sm text-gray-600 font-medium">Last Name</span>
-                      <span className="text-sm text-gray-900 font-semibold text-right">{result.data.lastname.disclose.result}</span>
+                      <span className="text-sm text-gray-900 font-semibold text-right">{result.result.lastname.disclose.result}</span>
                     </div>
                   )}
-                  {result.data?.dateofbirth && (
+                  {result.result?.dateofbirth && (
                     <div className="grid grid-cols-2 px-6 py-4 border-b border-gray-200">
                       <span className="text-sm text-gray-600 font-medium">Date of Birth</span>
-                      <span className="text-sm text-gray-900 font-semibold text-right">{result.data.dateofbirth.disclose.result}</span>
+                      <span className="text-sm text-gray-900 font-semibold text-right">{result.result.dateofbirth.disclose.result}</span>
                     </div>
                   )}
-                  {result.data?.nationality && (
+                  {result.result?.nationality && (
                     <div className="grid grid-cols-2 px-6 py-4 border-b border-gray-200">
                       <span className="text-sm text-gray-600 font-medium">Nationality</span>
-                      <span className="text-sm text-gray-900 font-semibold text-right">{result.data.nationality.disclose.result}</span>
+                      <span className="text-sm text-gray-900 font-semibold text-right">{result.result.nationality.disclose.result}</span>
                     </div>
                   )}
                   <div className="grid grid-cols-2 px-6 py-4 border-b border-gray-200">
