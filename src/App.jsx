@@ -21,7 +21,7 @@ function App() {
 
   const getAgeVerification = async () => {
     try {
-      const zkPassport = new ZKPassport('https://b95c91fd891c.ngrok-free.app/');
+      const zkPassport = new ZKPassport('https://zk-passport-ten.vercel.app/');
 
       const queryBuilder = await zkPassport.request({
         name: 'Grand Hotel Check-in',
@@ -73,7 +73,7 @@ function App() {
 
   const getNationalityVerification = async () => {
     try {
-      const zkPassport = new ZKPassport('https://b95c91fd891c.ngrok-free.app/');
+      const zkPassport = new ZKPassport('https://zk-passport-ten.vercel.app/');
 
       const queryBuilder = await zkPassport.request({
         name: 'Grand Hotel Check-in',
@@ -128,7 +128,7 @@ function App() {
 
   const getEUResidencyVerification = async () => {
     try {
-      const zkPassport = new ZKPassport('https://b95c91fd891c.ngrok-free.app/');
+      const zkPassport = new ZKPassport('https://zk-passport-ten.vercel.app/');
 
       const queryBuilder = await zkPassport.request({
         name: 'Grand Hotel Check-in',
@@ -188,7 +188,7 @@ function App() {
 
   const getKYCVerification = async () => {
     try {
-      const zkPassport = new ZKPassport('https://b95c91fd891c.ngrok-free.app/');
+      const zkPassport = new ZKPassport('https://zk-passport-ten.vercel.app/');
 
       const queryBuilder = await zkPassport.request({
         name: 'Grand Hotel Check-in',
@@ -260,7 +260,7 @@ function App() {
 
   const getPrivateFaceMatchVerification = async () => {
     try {
-      const zkPassport = new ZKPassport('https://b95c91fd891c.ngrok-free.app/');
+      const zkPassport = new ZKPassport('https://zk-passport-ten.vercel.app/');
 
       const queryBuilder = await zkPassport.request({
         name: 'Grand Hotel Check-in',
