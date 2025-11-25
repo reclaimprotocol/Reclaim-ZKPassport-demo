@@ -348,7 +348,7 @@ function App() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           <VerificationCard
             title="Age Verification"
-            description="Confirm you meet the minimum age requirement for check-in."
+            description="Confirm you meet the minimum age (18+) requirement for check-in."
             icon={UserCheck}
             onClick={getAgeVerification}
             delay={0}
