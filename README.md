@@ -4,9 +4,9 @@ A demonstration of zero-knowledge proof identity verification for seamless, priv
 
 ## Demo
 
-https://github.com/user-attachments/assets/f1c6b3ae-8ced-4e5e-a6e3-4c8812345678
+[![Watch the demo](https://img.youtube.com/vi/DwtxHN0dTDc/maxresdefault.jpg)](https://www.youtube.com/watch?v=DwtxHN0dTDc)
 
-> Upload demo.mp4 to GitHub (drag into an issue) and replace the URL above with the generated link.
+> Click the image above to watch the full demo on YouTube
 
 ## About This Project
 
