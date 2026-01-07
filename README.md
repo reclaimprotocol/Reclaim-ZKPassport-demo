@@ -4,7 +4,7 @@ A demonstration of zero-knowledge proof identity verification for seamless, priv
 
 ## Demo
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/DwtxHN0dTDc" frameborder="0" allowfullscreen></iframe>
+https://github.com/user-attachments/assets/750f7654-678e-4181-8842-08dd7b5e65ef
 
 ## About This Project
 
